@@ -46,7 +46,7 @@ namespace GeometryAI
             Init();
 
             ga = new GeneticAlgorithm(GeneCount);
-            ga.AddRandomPopulation(0);
+            ga.AddRandomPopulation(50);
 
             MouseMacro macro = new MouseMacro();
             float xpos = 0;
@@ -92,7 +92,7 @@ namespace GeometryAI
                     }
                 }
 
-                Chromosome chromo = ga.Populations[chromoIndex];
+                Chromosome chromo = ga.Populations[geneIndex];
 
                 if (chromo[geneIndex])
                 {
