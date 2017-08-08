@@ -8,10 +8,10 @@ namespace GeometryAI
 {
     public class Chromosome
     {
-        public float[] Genes;
+        public bool[] Genes;
         public float Fitness;
 
-        public float this[int index]
+        public bool this[int index]
         {
             get
             {
@@ -25,16 +25,10 @@ namespace GeometryAI
 
         public Chromosome(int geneCount)
         {
-            Genes = new float[geneCount];
+            Genes = new bool[geneCount];
             for (int i = 0; i < Genes.Length; i++)
             {
-                if (i % 2 == 0)
-                {
-                    Genes[i] = (float)Common.random.NextDouble() * 1f;
-                } else
-                {
-                    Genes[i] = (float)Common.random.NextDouble() * 2;
-                }
+                Genes[i] = Common.random.NextDouble() <= Common.random.NextDouble();
             }
         }
 

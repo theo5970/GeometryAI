@@ -115,7 +115,7 @@ namespace GeometryAI
                 {
                     if (Common.random.NextDouble() <= percent)
                     {
-                        newChromo[j] = (chromoA[j] + chromoB[j]) / 2;
+                        newChromo[j] = chromoA[j] && chromoB[j];
                     } else
                     {
                         newChromo[j] = Common.random.NextDouble() <= percent ? chromoA[j] : chromoB[j];
@@ -137,14 +137,7 @@ namespace GeometryAI
                 {
                     if (Common.random.NextDouble() <= percent)
                     {
-                        chromo[j] = (float)Common.random.NextDouble() * 0.1f - 0.1f;
-                        if (chromo[j] < 0)
-                        {
-                            chromo[j] = 0;
-                        } else if (chromo[j] > 5)
-                        {
-                            chromo[j] = 5;
-                        }
+                        chromo[j] = !chromo[j];
                     }
                 }
             }

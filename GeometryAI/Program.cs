@@ -35,7 +35,7 @@ namespace GeometryAI
             return bestFitness;
         }
 
-        const int GeneCount = 30;
+        const int GeneCount = 3000;
         static void Main(string[] args)
         {
             for (int i = 3; i >= 0; i--)
@@ -46,19 +46,18 @@ namespace GeometryAI
             Init();
 
             ga = new GeneticAlgorithm(GeneCount);
-            ga.AddRandomPopulation(20);
+            ga.AddRandomPopulation(0);
 
             MouseMacro macro = new MouseMacro();
             float xpos = 0;
             float last_xpos = 0;
             float delta_xpos = 0;
             float max_xpos = 0;
-            float time = 0;
 
             int chromoIndex = 0;
             int geneIndex = 0;
 
-            bool toggle = false;
+            bool isDown = false;
 
             macro.LeftDown();
 
@@ -94,20 +93,17 @@ namespace GeometryAI
                 }
 
                 Chromosome chromo = ga.Populations[chromoIndex];
-                time += 0.02f;
-                if (time > chromo.Genes[geneIndex])
+
+                if (chromo[geneIndex])
                 {
-                    time = 0;
-                    geneIndex++;
-                    toggle = !toggle;
-                    if (toggle)
-                    {
-                        macro.LeftUp();
-                    } else
-                    {
-                        macro.LeftDown();
-                    }
+                    macro.LeftDown();
+                    isDown = true;
+                } else if (isDown)
+                {
+                    macro.LeftUp();
                 }
+
+                geneIndex++;
                 last_xpos = GetPositionX();
                 Thread.Sleep(20);
             }
