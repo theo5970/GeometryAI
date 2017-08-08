@@ -92,7 +92,7 @@ namespace GeometryAI
                     }
                 }
 
-                Chromosome chromo = ga.Populations[geneIndex];
+                Chromosome chromo = ga.Populations[chromoIndex];
 
                 if (chromo[geneIndex])
                 {
